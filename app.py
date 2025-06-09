@@ -1,8 +1,11 @@
+from flask import Flask, request, jsonify
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 import os, time
+
+app = Flask(__name__)
 
 def extract_from_link(link):
     chrome_options = Options()
@@ -42,3 +45,14 @@ def extract_from_link(link):
 
     driver.quit()
     return result
+
+@app.route('/extract', methods=['POST'])
+def extract():
+    data = request.json
+    links = data.get("links", [])
+    results = [extract_from_link(link) for link in links]
+    return jsonify(results)
+
+if __name__ == '__main__':
+    PORT = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=PORT)
