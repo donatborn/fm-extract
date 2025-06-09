@@ -13,5 +13,5 @@ services:
       chmod +x ./chromedriver
       chmod +x ./chrome/chrome-linux64/chrome
       pip install -r requirements.txt
-    startCommand: python app.py
+    startCommand: ./start.sh
     plan: free
