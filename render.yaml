@@ -6,6 +6,7 @@ services:
       apt-get update
       apt-get install -y chromium
       chmod +x chromedriver
+      chmod +x chrome/chrome
       pip install -r requirements.txt
     startCommand: python app.py
     plan: free
