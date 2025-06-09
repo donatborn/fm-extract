@@ -15,9 +15,8 @@ def extract_from_link(link):
 
     chrome_options.binary_location = "/usr/bin/chromium"
     service = Service(executable_path="/usr/bin/chromedriver")
-    
-    driver = webdriver.Chrome(service=service, options=chrome_options)
 
+    driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.get(link)
     time.sleep(2)
 
@@ -46,6 +45,7 @@ def extract_from_link(link):
 
     driver.quit()
     return result
+
 
 @app.route('/extract', methods=['POST'])
 def extract():
