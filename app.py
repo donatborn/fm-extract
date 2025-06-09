@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-import os, time
+import time
 
 app = Flask(__name__)
 
@@ -13,8 +13,8 @@ def extract_from_link(link):
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
 
-    chrome_options.binary_location = "/usr/bin/chromium"
-    service = Service(executable_path="/usr/bin/chromedriver")
+    # Путь к chromedriver внутри проекта
+    service = Service(executable_path="./chromedriver")
 
     driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.get(link)
@@ -45,7 +45,6 @@ def extract_from_link(link):
 
     driver.quit()
     return result
-
 
 @app.route('/extract', methods=['POST'])
 def extract():
