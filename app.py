@@ -12,7 +12,7 @@ def extract_from_link(link):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
-
+    
     chrome_options.binary_location = "./chrome/chrome-linux64/chrome"
     service = Service(executable_path="./chromedriver")
 
